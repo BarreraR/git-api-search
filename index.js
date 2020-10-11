@@ -2,8 +2,8 @@
 
 const BASE_URL = 'https://api.github.com/'
 
-const getResults= function(search){
-    fetch(`${BASE_URL}users/${search}/repos`)
+const getResults= function(search, amount){
+    fetch(`${BASE_URL}users/${search}/repos?per_page=${amount}`)
         .then(response => {
             if(!response.ok){
                 throw new Error(response.statusText);
@@ -30,8 +30,10 @@ const handleSearch = function(){
     $('.js-form').on('submit', function(e) {
         e.preventDefault();
         const search = $('#js-search').val()
-        getResults(search);
+        const amount =$('#js-max-search').val();
+        getResults(search, amount);
         $('#js-search').val('');
+        $('#js-max-search').val(1);
         console.log("hi, foo!")
     });
 };
