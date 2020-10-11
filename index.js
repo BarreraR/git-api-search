@@ -15,7 +15,7 @@ const getResults= function(search, amount){
             generateData(data);
         })
         .catch(error => {
-            $('#js-error').html(error)
+            $('#js-error').html(error.message)
             $('#results-list').empty();
         });
 };
